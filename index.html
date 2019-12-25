@@ -1,13 +1,56 @@
 <!doctype HTML>
 <html>
 <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 <script src="https://raw.githack.com/jeromeetienne/AR.js/1.7.5/aframe/build/aframe-ar.js"></script>
+
   <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs>
   	<a-marker preset="hiro">
-        <a-text rotation="-45 0 0" color="#4CC3D9" value="Hello, World!"></a-text>
+        <!-- <a-box id=box src="https://avatars3.githubusercontent.com/u/24893654?s=460&v=4"
+        radius="45"
+        rotation="45 0 45"
+        animation="property: object3D.rotation.y; to: 360; dir: reverse;  dur: 5000; loop: true; easing: linear"
+        ></a-box> -->
+        <a-entity 
+          rotation="-90 0 0"
+          position="1 0 0"
+          scale="0.05 0.05 0.05"
+          fill="blue"
+          obj-model="obj: url(/school.obj); Color: #4CC3D9;"
+         ></a-entity>
+        <a-entity 
+          rotation="0 0 0"
+          scale="0.1 0.1 0.1"
+          obj-model="obj: url(/model.obj); "
+          animation="property: object3D.rotation.y; to: 360; dir: reverse;  dur: 2000; loop: true; easing: linear"
+           >
+        </a-entity>
+        <a-text  id=text rotation="-90 0 0" position="5 5 5" color="#4CC3D9" value="asd" ></a-text>
   	</a-marker>
   	<a-entity camera></a-entity>
     </a-scene>
   </body>
+  <script>
+      let str = "Hey ,  I am Ahmet!"
+      let index = 0;
+      setInterval(() => {
+        let toPrint = str.slice(0 , index % str.length + 1 );
+        text.setAttribute("value" , toPrint);
+        index++;
+      } , 200)
+      
+      function wait(time){
+          return Promise((res , rej) => {
+              setTimeout(res,time);
+          });
+      }
+
+      async function init(){
+        text.object3D.position.set(0, 0 , 1)
+
+      }
+
+      init();
+  </script>
 </html> 
