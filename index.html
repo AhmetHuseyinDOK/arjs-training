@@ -3,6 +3,8 @@
 <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 <script src="https://raw.githack.com/jeromeetienne/AR.js/1.7.5/aframe/build/aframe-ar.js"></script>
+<script src="https://unpkg.com/aframe-text-geometry-component/dist/aframe-text-geometry-component.min.js"></script> 
+
 
   <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs>
@@ -12,21 +14,28 @@
         rotation="45 0 45"
         animation="property: object3D.rotation.y; to: 360; dir: reverse;  dur: 5000; loop: true; easing: linear"
         ></a-box> -->
+        <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
+          <a-mixin id="boldFont" text="font: #optimerBoldFont"></a-mixin>
+        </a-assets>
         <a-entity 
           rotation="-90 0 0"
           position="1 0 0"
           scale="0.05 0.05 0.05"
-          fill="blue"
-          obj-model="obj: url(./school.obj); Color: #4CC3D9;"
+          material="color: red"
+          obj-model="obj: url(./school.obj);"
          ></a-entity>
+         <a-entity id=uni position="1.50 0.2 0" rotation="0 0 0" mixin="boldFont" text-geometry="value: Fatih Sultan Mehmet Vakif University"></a-entity>
         <a-entity 
+        material="color: grey"
           rotation="0 0 0"
           scale="0.1 0.1 0.1"
           obj-model="obj: url(./model.obj); "
           animation="property: object3D.rotation.y; to: 360; dir: reverse;  dur: 2000; loop: true; easing: linear"
            >
         </a-entity>
-        <a-text  id=text rotation="-90 0 0" position="5 5 5" color="#4CC3D9" value="asd" ></a-text>
+          
+        
+        <a-text  id=text rotation="-90 0 0" position="5 5 5" bevelThickness="10" color="#4CC3D9" value="asd" ></a-text>
   	</a-marker>
   	<a-entity camera></a-entity>
     </a-scene>
